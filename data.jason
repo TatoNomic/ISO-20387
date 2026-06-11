@@ -1,38 +1,50 @@
 [
-  { 
-    "title": "Application Submission", 
-    "subtext": "Finalize package for July submission deadline.", 
-    "progress": 90, 
-    "phaseText": "FINAL REVIEW" 
+  {
+    "id": 1,
+    "title": "Application Submission",
+    "timeline": "Submission (July 2026)",
+    "description": "Finalize package for official UKAS submission deadline.",
+    "status": "Submitted",
+    "notes": "Ensuring all core biobanking documentation satisfies ISO requirements."
   },
-  { 
-    "title": "UKAS Initial Review", 
-    "subtext": "2-week turnaround window post-submission.", 
-    "progress": 10, 
-    "phaseText": "AWAITING SUBMISSION" 
+  {
+    "id": 2,
+    "title": "UKAS Initial Review",
+    "timeline": "Review Window (~2 Weeks)",
+    "description": "Awaiting official 2-week turnaround response from UKAS.",
+    "status": "Active/Planned",
+    "notes": "Crucial checkpoint to address immediate feedback swiftly."
   },
-  { 
-    "title": "Pre-Assessment Prep", 
-    "subtext": "Targeting October pre-assessment milestone.", 
-    "progress": 0, 
-    "phaseText": "PLANNED" 
+  {
+    "id": 3,
+    "title": "Assessor Capacity Watch",
+    "timeline": "Risk Management",
+    "description": "UKAS landscape currently relies on only 1 active qualified assessor.",
+    "status": "Active/Planned",
+    "notes": "High priority constraint—early submission secures our evaluation slot."
   },
-  { 
-    "title": "Assessor Capacity Watch", 
-    "subtext": "Risk mitigation: Currently only 1 active UKAS assessor.", 
-    "progress": 20, 
-    "phaseText": "MONITORING" 
+  {
+    "id": 4,
+    "title": "Pre-Assessment Audit",
+    "timeline": "Target: October 2026",
+    "description": "First major physical or remote pre-assessment checkpoint.",
+    "status": "Audit Prep",
+    "notes": "Deep-dive gap analysis to clean up operations before full audit."
   },
-  { 
-    "title": "UK Biobank Landscape", 
-    "subtext": "Goal: Become the 6th accredited biobank in the UK.", 
-    "progress": 50, 
-    "phaseText": "4 ACCREDITED / 1 PENDING" 
+  {
+    "id": 5,
+    "title": "UK Biobank Landscape",
+    "timeline": "Strategic Goal",
+    "description": "4 Bibaks currently accredited in the UK, 1 more arriving in months.",
+    "status": "Audit Prep",
+    "notes": "Targeting execution to officially debut as the 6th accredited site."
   },
-  { 
-    "title": "Full Assessment Prep", 
-    "subtext": "Final audit preparation targeted for June.", 
-    "progress": 0, 
-    "phaseText": "PLANNED" 
+  {
+    "id": 6,
+    "title": "Full Accreditation Assessment",
+    "timeline": "Target: June 2027",
+    "description": "The definitive on-site UKAS assessment for full ISO 20387 recognition.",
+    "status": "Not Started",
+    "notes": "Culmination of all implementation fidelity and quality standards."
   }
 ]
