@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISO 20387 Biobanking Accreditation Roadmap</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 min-h-screen p-6 md:p-12 font-sans antialiased">
+
+  <div class="max-w-6xl mx-auto">
+    
+    <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-12">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-2">ISO 20387</h1>
+        <p class="text-xl md:text-2xl text-slate-500 font-medium">Biobanking Accreditation Roadmap</p>
+      </div>
+      
+      <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-100 min-w-[240px] text-center">
+        <span class="text-xs font-bold tracking-wider text-slate-400 uppercase">Accreditation Readiness</span>
+        <div id="readiness-value" class="text-6xl font-black text-emerald-500 mt-1">--%</div>
+      </div>
+    </header>
+
+    <main id="cards-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div id="loading" class="text-slate-400 font-medium text-lg col-span-full text-center py-12">
+        Loading ISO 20387 roadmap data...
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    const container = document.getElementById('cards-container');
+    const readinessEl = document.getElementById('readiness-value');
+    const loadingEl = document.getElementById('loading');
+
+    // Fetch the external data.json file from the same repository directory
+    fetch('./data.json')
+      .then(response => {
+        if (!response.ok) throw new Error("Could not locate data.json");
+        return response.json();
+      })
+      .then(tasks => {
+        // Clear loading state once data is successfully fetched
+        loadingEl.remove();
+
+        let totalPercentSum = 0;
+
+        tasks.forEach(task => {
+          totalPercentSum += task.progress;
+
+          // Determine automated theme colors based purely on the progress number
+          let badgeColor, barColor, phaseColor, labelSuffix;
+
+          if (task.progress === 100) {
+            labelSuffix = "COMPLETED";
+            badgeColor = "bg-emerald-100 text-emerald-700";
+            barColor = "bg-emerald-600";
+            phaseColor = "text-emerald-600";
+          } else if (task.progress >= 50) {
+            labelSuffix = "ACTIVE / IN REVIEW";
+            badgeColor = "bg-blue-100 text-blue-600";
+            barColor = "bg-blue-600";
+            phaseColor = "text-blue-600";
+          } else if (task.progress >= 1) {
+            labelSuffix = "IN PROGRESS";
+            badgeColor = "bg-amber-50 text-amber-600 border border-amber-200";
+            barColor = "bg-amber-500";
+            phaseColor = "text-amber-500";
+          } else {
+            labelSuffix = "PLANNED";
+            badgeColor = "bg-slate-100 text-slate-500";
+            barColor = "bg-slate-300";
+            phaseColor = "text-slate-400";
+          }
+
+          // Use the custom phaseText or fallback to automated labels if progress is 0
+          const dynamicBadgeText = task.progress === 0 
+            ? "PLANNED" 
+            : `${task.progress}% ${labelSuffix}`;
+
+          // Create and append the card component
+          const card = document.createElement('div');
+          card.className = "bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100/80 flex flex-col justify-between min-h-[260px] transition-all hover:shadow-md";
+
+          card.innerHTML = `
+            <div>
+              <div class="mb-5">
+                <span class="text-[10px] font-extrabold tracking-wider uppercase px-3 py-1.5 rounded-full ${badgeColor}">
+                  ${dynamicBadgeText}
+                </span>
+              </div>
+              <h3 class="text-xl font-bold text-slate-800 leading-snug mb-1">${task.title}</h3>
+              <p class="text-sm text-slate-400 font-medium leading-relaxed">${task.subtext}</p>
+            </div>
+
+            <div>
+              <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden mb-5">
+                <div class="${barColor} h-full rounded-full transition-all duration-500" style="width: ${task.progress}%"></div>
+              </div>
+              <span class="text-xs font-extrabold tracking-wider uppercase ${phaseColor}">
+                ${task.phaseText}
+              </span>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+        // Compute and display the overall average live
+        const calculatedAverage = tasks.length > 0 ? Math.round(totalPercentSum / tasks.length) : 0;
+        readinessEl.textContent = calculatedAverage + '%';
+      })
+      .catch(error => {
+        console.error(error);
+        loadingEl.textContent = "Failed to load roadmap tasks. Ensure data.json is in this directory.";
+        loadingEl.className = "text-red-500 font-medium text-center col-span-full py-12";
+      });
+  </script>
+</body>
+</html>
