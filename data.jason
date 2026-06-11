@@ -1,0 +1,38 @@
+[
+  { 
+    "title": "Application Submission", 
+    "subtext": "Finalize package for July submission deadline.", 
+    "progress": 90, 
+    "phaseText": "FINAL REVIEW" 
+  },
+  { 
+    "title": "UKAS Initial Review", 
+    "subtext": "2-week turnaround window post-submission.", 
+    "progress": 10, 
+    "phaseText": "AWAITING SUBMISSION" 
+  },
+  { 
+    "title": "Pre-Assessment Prep", 
+    "subtext": "Targeting October pre-assessment milestone.", 
+    "progress": 0, 
+    "phaseText": "PLANNED" 
+  },
+  { 
+    "title": "Assessor Capacity Watch", 
+    "subtext": "Risk mitigation: Currently only 1 active UKAS assessor.", 
+    "progress": 20, 
+    "phaseText": "MONITORING" 
+  },
+  { 
+    "title": "UK Biobank Landscape", 
+    "subtext": "Goal: Become the 6th accredited biobank in the UK.", 
+    "progress": 50, 
+    "phaseText": "4 ACCREDITED / 1 PENDING" 
+  },
+  { 
+    "title": "Full Assessment Prep", 
+    "subtext": "Final audit preparation targeted for June.", 
+    "progress": 0, 
+    "phaseText": "PLANNED" 
+  }
+]
